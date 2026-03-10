@@ -28,49 +28,68 @@ using OpenCV's checkerboard method on Windows 10/11.
 
 Full output: [calibration_output/d455_calibration.yaml](calibration_output/d455_calibration.yaml)
 
+---
+
 ## Setup
 
 ### 1. Install Intel RealSense SDK
 Download the Windows installer from:
-https://github.com/realsenseai/librealsense/releases
-→ RealSense.SDK-WIN10-x.xx.x.exe
+[https://github.com/realsenseai/librealsense/releases](https://github.com/realsenseai/librealsense/releases)
+
+Download and run: `RealSense.SDK-WIN10-x.xx.x.exe`
 
 ### 2. Install Python dependencies
+```bash
 pip install -r requirements.txt
+```
+
+---
 
 ## Workflow
 
 ### Step 1 — Generate checkerboard
+```bash
 python generate_board.py
-# Prints checkerboard_PRINT_ME.png
-# Print at 100% scale, no fit-to-page
-# Mount flat on rigid surface
+```
+Saves `checkerboard_PRINT_ME.png`. Print at **100% scale, no fit-to-page**. Measure one square with a ruler, then mount flat on a rigid surface.
 
 ### Step 2 — Capture images
+```bash
 python capture.py
-# SPACE = save frame
-# Q     = quit
-# Target: 40-50 images with varied angles and distances
+```
+- `SPACE` — save current frame
+- `Q` — quit when done
+- Target: 40–50 images with varied angles, tilts, and distances
+- Keep the full checkerboard visible in every shot
 
 ### Step 3 — Update square size
-# Open calibrate.py and set SQUARE_SIZE_METERS to your
-# measured square size e.g. 0.0265 for 26.5mm
+Open `calibrate.py` and update line 17 with your measured square size:
+```python
+SQUARE_SIZE_METERS = 0.0265  # example: 26.5mm
+```
 
 ### Step 4 — Run calibration
+```bash
 python calibrate.py
-# Outputs camera_matrix.npy, dist_coeffs.npy, d455_calibration.yaml
+```
+Saves `camera_matrix.npy`, `dist_coeffs.npy`, and `d455_calibration.yaml` to `calibration_output/`
 
 ### Step 5 — Verify
+```bash
 python use.py
-# Shows raw vs undistorted feed side by side
+```
+Displays raw vs undistorted feed side by side. Straight lines in the real world should look straight in the undistorted frame.
+
+---
 
 ## Using the Calibration in ROS 2 / Nav2
-camera_info_url: "f/Users/marcelo/dev/calibration/Intel_RealSense_D455/calibration_output/d455_calibration.yaml"
+
+Copy `calibration_output/d455_calibration.yaml` into your ROS 2 package and point your camera node to it:
+```yaml
+camera_info_url: "file:///absolute/path/to/calibration_output/d455_calibration.yaml"
 ```
 
-Open `Intel_RealSense_D455/requirements.txt` and paste:
-```
-opencv-python>=4.5.0
-numpy>=1.21.0
-pyrealsense2>=2.50.0
-pyyaml>=5.4.0
+---
+
+## Requirements
+See [requirements.txt](requirements.txt)
