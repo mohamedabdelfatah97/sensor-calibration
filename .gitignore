@@ -1,0 +1,12 @@
+# Ignore captured images - too large
+Intel_RealSense_D455/images/
+
+# Ignore numpy binaries
+*.npy
+
+# Mac
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
