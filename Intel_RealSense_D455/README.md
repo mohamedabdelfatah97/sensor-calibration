@@ -8,6 +8,8 @@ using OpenCV's checkerboard method on Windows 10/11.
 - Printed 10x7 checkerboard, 26.5mm squares
 - Mounted flat on rigid cardboard backing
 
+---
+
 ## Calibration Results
 
 | Metric | Value |
@@ -27,6 +29,34 @@ using OpenCV's checkerboard method on Windows 10/11.
 | cy | 375.95 px |
 
 Full output: [calibration_output/d455_calibration.yaml](calibration_output/d455_calibration.yaml)
+
+---
+
+## RealSense Viewer — SDK Verification
+
+Before running the Python calibration pipeline, the camera was verified
+using the Intel RealSense Viewer (v2.57.6). All three sensor modules
+were confirmed working — depth, RGB, and IMU.
+
+### 3D Point Cloud (Depth Stream)
+The stereo depth module produces a dense colored point cloud in real time.
+The color map encodes depth — blue is close, red is far.
+
+![Point Cloud](assets/pointcloud_3d.png)
+
+### Depth Measurement Tool
+The built-in measurement tool was used to verify metric accuracy.
+The reading shown (-0.765, -0.396, 1.162 meters) confirms the depth
+stream is producing real-world scale distances correctly.
+
+![Depth Measurement](assets/pointcloud_measure.png)
+
+### IMU and Gyro Streams
+The Motion Module was enabled to verify the built-in IMU.
+Both the accelerometer and gyroscope streams are live and producing
+valid 6-DoF orientation data — essential for use with SLAM and Nav2.
+
+![IMU and Gyro](assets/imu_gyro_stream.png)
 
 ---
 
