@@ -1,0 +1,26 @@
+camera_matrix:
+  cols: 3
+  data:
+  - 906.1162715202196
+  - 0.0
+  - 645.7924998016747
+  - 0.0
+  - 907.2339529445932
+  - 353.68802294933715
+  - 0.0
+  - 0.0
+  - 1.0
+  rows: 3
+camera_name: d435i
+distortion_coefficients:
+  cols: 5
+  data:
+  - 0.1468673133388662
+  - -0.4459609248865394
+  - -7.309168181184638e-05
+  - 0.004017940400210429
+  - 0.3365114025821472
+  rows: 1
+distortion_model: plumb_bob
+image_height: 720
+image_width: 1280
