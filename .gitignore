@@ -1,13 +1,12 @@
-# Captured calibration images — too large for GitHub
-images/
+# Ignore captured images - too large
+Intel_RealSense_D455/images/
 
-# Numpy binaries
+# Ignore numpy binaries
 *.npy
+
+# Mac
+.DS_Store
 
 # Python
 __pycache__/
 *.pyc
-
-# OS
-.DS_Store
-Thumbs.db
