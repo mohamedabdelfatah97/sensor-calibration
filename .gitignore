@@ -10,3 +10,4 @@ Intel_RealSense_D455/images/
 # Python
 __pycache__/
 *.pyc
+Intel_RealSense_D435i/images/

@@ -1,0 +1,20 @@
+nano .gitignore
+```
+
+Add this line after the D455 images line:
+```
+Intel_RealSense_D435i/images/
+```
+
+So it looks like:
+```
+# Ignore captured images - too large
+Intel_RealSense_D455/images/
+Intel_RealSense_D435i/images/
+# Ignore numpy binaries
+*.npy
+# Mac
+.DS_Store
+# Python
+__pycache__/
+*.pyc
